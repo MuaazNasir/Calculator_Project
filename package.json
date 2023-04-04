@@ -1,18 +1,10 @@
 {
   "name": "calculator-muaaz",
-  "version": "1.5.1",
-  "description": "calculator project",
-  "main": "./lib/calculator.js",
+  "version": "1.0.4",
+  "description": "",
   "type": "module",
-  "bin": {
-    "calculator-muaaz" : "lib/calculator.js"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "Muaaz Nasir",
-  "license": "ISC",
+  "main": "./calculator.js",
+  "bin": "./calculator.js",
   "dependencies": {
     "@types/figlet": "^1.5.5",
     "@types/inquirer": "^9.0.3",
@@ -21,15 +13,13 @@
     "inquirer": "^9.1.5",
     "npm": "^9.6.3"
   },
-  "directories": {
-    "lib": "lib"
-  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MuaazNasir/Calculator_Project.git"
+    "url": "https://github.com/MuaazNasir/Calculator_Project"
   },
-  "bugs": {
-    "url": "https://github.com/MuaazNasir/Calculator_Project/issues"
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "homepage": "https://github.com/MuaazNasir/Calculator_Project#readme"
+  "author": "Muaaz Nasir",
+  "license": "ISC"
 }
