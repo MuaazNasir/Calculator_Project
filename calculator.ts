@@ -4,6 +4,8 @@ import inquirer from "inquirer";
 import chalk from "chalk";
 import figlet from "figlet";
 
+/*  clearing the terminal */
+console.clear();
 /*     BANNER        */
 
 figlet('\n\nCALCULATOR', function (err, data) {
