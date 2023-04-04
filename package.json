@@ -4,6 +4,10 @@
   "description": "calculator project",
   "main": "index.js",
   "type": "module",
+  "bin": {
+    "biz-card" : "./lib/calculator.js",
+    "test" : "./lib/calculator.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
