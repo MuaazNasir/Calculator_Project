@@ -1,8 +1,8 @@
 {
   "name": "calculator-muaaz",
-  "version": "2.0.0",
+  "version": "1.3.0",
   "description": "calculator project",
-  "main": "index.js",
+  "main": "./lib/calculator.js",
   "type": "module",
   "bin": "./lib/calculator.js",
   "scripts": {
