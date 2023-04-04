@@ -1,12 +1,12 @@
 {
   "name": "calculator-muaaz",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "calculator project",
   "main": "index.js",
   "type": "module",
   "bin": {
-    "biz-card" : "./lib/calculator.js",
-    "test" : "./lib/calculator.js"
+    "biz-card": "./lib/calculator.js",
+    "test": "./lib/calculator.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
