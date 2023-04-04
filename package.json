@@ -1,14 +1,14 @@
 {
   "name": "calculator",
   "version": "1.0.0",
-  "description": "",
+  "description": "calculator project",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Muaaz Nasir",
   "license": "ISC",
   "dependencies": {
     "@types/figlet": "^1.5.5",
@@ -16,5 +16,17 @@
     "chalk": "^5.2.0",
     "figlet": "^1.5.2",
     "inquirer": "^9.1.5"
-  }
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MuaazNasir/Calculator_Project.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MuaazNasir/Calculator_Project/issues"
+  },
+  "homepage": "https://github.com/MuaazNasir/Calculator_Project#readme"
 }
