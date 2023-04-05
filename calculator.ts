@@ -5,8 +5,10 @@ import chalk from "chalk";
 import figlet from "figlet";
 import { BigNumber } from 'bignumber.js';
 import boxen from "boxen";
+
 /*  clearing the terminal */
 console.clear();
+
 /*     BANNER        */
 
 chalk.bgBlue(figlet('\n\nCALCULATOR', "Big Money-ne", function (err, data) {
