@@ -3,27 +3,33 @@
 import inquirer from "inquirer";
 import chalk from "chalk";
 import figlet from "figlet";
-
+import { BigNumber } from 'bignumber.js';
+import boxen from "boxen";
 /*  clearing the terminal */
 console.clear();
 /*     BANNER        */
 
-figlet('\n\nCALCULATOR', function (err, data) {
+chalk.bgBlue(figlet('\n\nCALCULATOR', "Big Money-ne", function (err, data) {
     if (err) {
         console.log('something went wrong !!!')
     }
-    console.log(data);
+    let output = boxen(chalk.bold.yellowBright(data), {
+        padding: 1,
+        margin: 1,
+        borderStyle: 'double',
+        borderColor: 'yellowBright',
+    })
+    console.log(output);
     console.log(`${chalk.bgCyanBright.red.bold('Author : MUAAZ NASIR')}\t\t\t${chalk.bgGray.bold('PIAIC Project Calculator')}\n\n`)
 })
-
-
+)
 
 setTimeout(async () => {
     /*            asking user to start                */
     let start = await inquirer.prompt({
         name: 'start',
         type: 'confirm',
-        message: `${chalk.bold.underline.whiteBright('want to Start the CALCULATOR ??')}`
+        message: `${chalk.whiteBright.bold.underline('Do You Want To Start The CALCULATOR ??')}`
     })
 
     if (start.start) { // <- it will execute if user says yes to start 
@@ -49,12 +55,17 @@ setTimeout(async () => {
                     type: 'list',
                     choices: ['+', '-', '*', '/', '^', '%'],
                     message: chalk.yellow('now choose an operator : ')
+                },
+                {
+                    name: 'power',
+                    type: 'confirm',
+                    message: 'Power : normal(y) , hard(n)',
                 }
             ])
 
             /*                LOGIC                 */
 
-            const { firstNo, secondNo, operation } = inputs;
+            const { firstNo, secondNo, operation, power } = inputs;
 
             let result = 0;
 
@@ -62,42 +73,86 @@ setTimeout(async () => {
             if (!(Number.isNaN(firstNo) || Number.isNaN(secondNo))) {
 
 /* Addition */  if (operation === '+') {
-                    result = firstNo + secondNo;
-                    console.log(`\nthe result of '${firstNo} ${operation} ${secondNo}' is "${result}"`);
+                    if (power) {
+                        console.log(`\nthe result of '${firstNo} ${operation} ${secondNo}' is "${firstNo + secondNo}"`);
+                    } else {
+                        try {
+                            console.log(`\nthe result of '${firstNo} ${operation} ${secondNo}' is "${(new BigNumber(firstNo)).plus((new BigNumber(secondNo)))}"`)
+                        } catch (err) {
+                            console.log('error occured , please try changing mode ,  error is ', chalk.red(err))
+                        }
+                    }
                 }
 /*Subtraction*/ else if (operation === '-') {
-                    result = firstNo - secondNo;
-                    console.log(`\nthe result of '${firstNo} ${operation} ${secondNo}' is "${result}"`);
+                    if (power) {
+                        console.log(`\nthe result of '${firstNo} ${operation} ${secondNo}' is "${firstNo - secondNo}"`);
+                    } else {
+                        try {
+                            console.log(`\nthe result of '${firstNo} ${operation} ${secondNo}' is "${(new BigNumber(firstNo)).minus((new BigNumber(secondNo)))}"`)
+                        } catch (err) {
+                            console.log('error occured , please try changing mode ,  error is ', chalk.red(err))
+                        }
+                    }
                 }
 /*Multiply*/    else if (operation === '*') {
-                    result = firstNo * secondNo;
-                    console.log(`\nthe result of '${firstNo} ${operation} ${secondNo}' is "${result}"`);
+                    if (power) {
+                        console.log(`\nthe result of '${firstNo} ${operation} ${secondNo}' is "${firstNo * secondNo}"`);
+                    } else {
+                        try {
+                            console.log(`\nthe result of '${firstNo} ${operation} ${secondNo}' is "${(new BigNumber(firstNo)).multipliedBy((new BigNumber(secondNo)))}"`)
+                        } catch (err) {
+                            console.log('error occured , please try changing mode ,  error is ', chalk.red(err))
+                        }
+                    }
                 }
 /*Division*/    else if (operation === '/') {
-                    result = firstNo / secondNo;
-
-        // checking that divisor is '0' or not            
+                    // checking that divisor is '0' or not            
                     if (secondNo === 0) {
                         console.log('\n0 is not valid as divisor');
                     } else {
-                        console.log(`\nthe result of '${firstNo} ${operation} ${secondNo}' is "${result}"`);
+                        if (power) {
+                            console.log(`\nthe result of '${firstNo} ${operation} ${secondNo}' is "${firstNo / secondNo}"`);
+                        } else {
+                            try {
+                                console.log(`\nthe result of '${firstNo} ${operation} ${secondNo}' is "${(new BigNumber(firstNo)).dividedBy((new BigNumber(secondNo)))}"`)
+                            } catch (err) {
+                                console.log('error occured , please try changing mode ,  error is ', chalk.red(err))
+                            }
+                        }
                     }
                 }
 /*Exponent*/    else if (operation === '^') {
-                    result = firstNo ** secondNo;
-        // checking for infinity
-                    if (result === Infinity) {
-                        console.log('\nplz try some short Numbers');
+                    if (power) {
+                        if (firstNo ** secondNo === Infinity) {
+                            console.log('too long numbers ... you can choose hard level to see result')
+                        } else {
+                            console.log(`\nthe result of '${firstNo} ${operation} ${secondNo}' is "${firstNo ** secondNo}"`)
+                        }
                     } else {
-                        console.log(`\nthe result of '${firstNo} ${operation} ${secondNo}' is "${result}"`)
-                    };
+                        try {
+                            console.log(`\nthe result of '${firstNo} ${operation} ${secondNo}' is "${(new BigNumber(firstNo)).pow((new BigNumber(secondNo)))}"`)
+                        } catch (err) {
+                            console.log('error occured , please try changing mode ,  error is ', chalk.red(err))
+                        }
+                    }
                 }
 /*Modulus*/     else if (operation === '%') {
-                    result = firstNo % secondNo;
-                    console.log(`\nthe result of '${firstNo} ${operation} ${secondNo}' is "${result}"`);
+                    if (secondNo === 0) {
+                        console.log(chalk.red('0 is not valid'))
+                    } else {
+                        if (power) {
+                            console.log(`\nthe result of '${firstNo} ${operation} ${secondNo}' is "${firstNo % secondNo}"`);
+                        } else {
+                            try {
+                                console.log(`\nthe result of '${firstNo} ${operation} ${secondNo}' is "${(new BigNumber(firstNo)).mod((new BigNumber(secondNo)))}"`)
+                            } catch (err) {
+                                console.log('error occured , please try changing mode ,  error is ', chalk.red(err))
+                            }
+                        }
+                    }
                 }
             }
-        // if inputs are not valid    
+            // if inputs are not valid    
             else {
                 console.log(chalk.redBright(`\nplease enter VALID numbers`));
             }
@@ -109,7 +164,7 @@ setTimeout(async () => {
                 type: 'confirm',
                 message: 'want to continue?',
             })
-        // if user says no
+            // if user says no
             if (!end.end) {
                 console.log(chalk.red('\nCALCULATOR ended'))
                 break;
@@ -120,7 +175,7 @@ setTimeout(async () => {
         while (start.start)
     }
     // if user says no
-    else{
+    else {
         console.log(chalk.red('\nCALCULATOR ended'))
     }
 }, 100)

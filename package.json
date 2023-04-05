@@ -1,14 +1,19 @@
 {
   "name": "calculator-muaaz",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "description": "",
   "type": "module",
   "main": "./calculator.js",
   "bin": "./calculator.js",
   "dependencies": {
+    "@types/bignumber.js": "^5.0.0",
+    "@types/chalk-animation": "^1.6.1",
     "@types/figlet": "^1.5.5",
     "@types/inquirer": "^9.0.3",
+    "bignumber.js": "^9.1.1",
+    "boxen": "^7.0.2",
     "chalk": "^5.2.0",
+    "chalk-animation": "^2.0.3",
     "figlet": "^1.5.2",
     "inquirer": "^9.1.5",
     "npm": "^9.6.3"
