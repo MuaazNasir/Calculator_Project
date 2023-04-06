@@ -57,99 +57,93 @@ setTimeout(async () => {
                     type: 'list',
                     choices: ['+', '-', '*', '/', '^', '%'],
                     message: chalk.yellow('now choose an operator : ')
-                },
-                {
-                    name: 'power',
-                    type: 'confirm',
-                    message: 'Power : normal(y) , hard(n)',
                 }
             ])
 
             /*                LOGIC                 */
 
-            const { firstNo, secondNo, operation, power } = inputs;
+            const { firstNo, secondNo, operation} = inputs;
 
-            let result = 0;
+            let result: number = 0;
 
             // checking that the input is number or not
             if (!(Number.isNaN(firstNo) || Number.isNaN(secondNo))) {
 
 /* Addition */  if (operation === '+') {
-                    if (power) {
-                        console.log(`\nthe result of '${firstNo} ${operation} ${secondNo}' is "${firstNo + secondNo}"`);
+                    result = firstNo + secondNo;
+
+                    if (Number.isNaN(result)) {
+                        console.log(chalk.red.bold('invalid inputs !!'))
                     } else {
                         try {
                             console.log(`\nthe result of '${firstNo} ${operation} ${secondNo}' is "${(new BigNumber(firstNo)).plus((new BigNumber(secondNo)))}"`)
                         } catch (err) {
-                            console.log('error occured , please try changing mode ,  error is ', chalk.red(err))
+                            console.log(`\nthe result of '${firstNo} ${operation} ${secondNo}' is "${result}"`)
                         }
                     }
                 }
 /*Subtraction*/ else if (operation === '-') {
-                    if (power) {
-                        console.log(`\nthe result of '${firstNo} ${operation} ${secondNo}' is "${firstNo - secondNo}"`);
+                    result = firstNo - secondNo;
+
+                    if (Number.isNaN(result)) {
+                        console.log(chalk.red.bold('invalid inputs !!'))
                     } else {
                         try {
                             console.log(`\nthe result of '${firstNo} ${operation} ${secondNo}' is "${(new BigNumber(firstNo)).minus((new BigNumber(secondNo)))}"`)
                         } catch (err) {
-                            console.log('error occured , please try changing mode ,  error is ', chalk.red(err))
+                            console.log(`\nthe result of '${firstNo} ${operation} ${secondNo}' is "${result}"`)
                         }
                     }
                 }
 /*Multiply*/    else if (operation === '*') {
-                    if (power) {
-                        console.log(`\nthe result of '${firstNo} ${operation} ${secondNo}' is "${firstNo * secondNo}"`);
+                    result = firstNo * secondNo;
+
+                    if (Number.isNaN(result)) {
+                        console.log(chalk.red.bold('invalid inputs !!'))
                     } else {
                         try {
                             console.log(`\nthe result of '${firstNo} ${operation} ${secondNo}' is "${(new BigNumber(firstNo)).multipliedBy((new BigNumber(secondNo)))}"`)
                         } catch (err) {
-                            console.log('error occured , please try changing mode ,  error is ', chalk.red(err))
+                            console.log(`\nthe result of '${firstNo} ${operation} ${secondNo}' is "${result}"`)
                         }
                     }
                 }
 /*Division*/    else if (operation === '/') {
-                    // checking that divisor is '0' or not            
-                    if (secondNo === 0) {
-                        console.log('\n0 is not valid as divisor');
+                    result = firstNo / secondNo;
+
+                    if (Number.isNaN(result) || !Number.isFinite(result)) {
+                        console.log(chalk.red.bold('invalid inputs !!'))
                     } else {
-                        if (power) {
-                            console.log(`\nthe result of '${firstNo} ${operation} ${secondNo}' is "${firstNo / secondNo}"`);
-                        } else {
-                            try {
-                                console.log(`\nthe result of '${firstNo} ${operation} ${secondNo}' is "${(new BigNumber(firstNo)).dividedBy((new BigNumber(secondNo)))}"`)
-                            } catch (err) {
-                                console.log('error occured , please try changing mode ,  error is ', chalk.red(err))
-                            }
+                        try {
+                            console.log(`\nthe result of '${firstNo} ${operation} ${secondNo}' is "${(new BigNumber(firstNo)).dividedBy((new BigNumber(secondNo)))}"`)
+                        } catch (err) {
+                            console.log(`\nthe result of '${firstNo} ${operation} ${secondNo}' is "${result}"`)
                         }
                     }
                 }
 /*Exponent*/    else if (operation === '^') {
-                    if (power) {
-                        if (firstNo ** secondNo === Infinity) {
-                            console.log('too long numbers ... you can choose hard level to see result')
-                        } else {
-                            console.log(`\nthe result of '${firstNo} ${operation} ${secondNo}' is "${firstNo ** secondNo}"`)
-                        }
+                    result = firstNo ** secondNo;
+
+                    if (Number.isNaN(result)) {
+                        console.log(chalk.red.bold('invalid inputs !!'))
                     } else {
                         try {
                             console.log(`\nthe result of '${firstNo} ${operation} ${secondNo}' is "${(new BigNumber(firstNo)).pow((new BigNumber(secondNo)))}"`)
                         } catch (err) {
-                            console.log('error occured , please try changing mode ,  error is ', chalk.red(err))
+                            console.log(`\nthe result of '${firstNo} ${operation} ${secondNo}' is "${result}"`)
                         }
                     }
                 }
 /*Modulus*/     else if (operation === '%') {
-                    if (secondNo === 0) {
-                        console.log(chalk.red('0 is not valid'))
+                    result = firstNo % secondNo;
+
+                    if (Number.isNaN(result)) {
+                        console.log(chalk.red.bold('invalid inputs !!'))
                     } else {
-                        if (power) {
-                            console.log(`\nthe result of '${firstNo} ${operation} ${secondNo}' is "${firstNo % secondNo}"`);
-                        } else {
-                            try {
-                                console.log(`\nthe result of '${firstNo} ${operation} ${secondNo}' is "${(new BigNumber(firstNo)).mod((new BigNumber(secondNo)))}"`)
-                            } catch (err) {
-                                console.log('error occured , please try changing mode ,  error is ', chalk.red(err))
-                            }
+                        try {
+                            console.log(`\nthe result of '${firstNo} ${operation} ${secondNo}' is "${(new BigNumber(firstNo)).mod((new BigNumber(secondNo)))}"`)
+                        } catch (err) {
+                            console.log(`\nthe result of '${firstNo} ${operation} ${secondNo}' is "${result}"`)
                         }
                     }
                 }
